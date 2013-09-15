@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace TasksManager.WpfClient.Behavior
+namespace RecepiesClient.Behavior
 {
     public delegate void ExecuteDelegate(object parameter);
     public delegate bool CanExecuteDelegate(object parameter);
@@ -15,9 +11,9 @@ namespace TasksManager.WpfClient.Behavior
         private ExecuteDelegate execute;
         private CanExecuteDelegate canExecute;
 
-        public RelayCommand(ExecuteDelegate execute):this(execute, null)
+        public RelayCommand(ExecuteDelegate execute)
+            :this(execute, null)
         {
-
         }
 
         public RelayCommand(ExecuteDelegate execute, 

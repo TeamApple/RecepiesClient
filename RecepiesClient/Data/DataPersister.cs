@@ -1,9 +1,9 @@
-﻿using Recepies.Services.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RecepiesClient.Models;
 
 namespace RecepiesClient.Data
 {
@@ -11,9 +11,9 @@ namespace RecepiesClient.Data
     {
         protected static string AccessToken { get; set; }
 
-        private const string BaseServicesUrl = "http://localhost:16183/api/";
+        private const string BaseServicesUrl = "http://recepiesservices.apphb.com/";
 
-        internal static void RegisterUser(string username, string email, string authenticationCode)
+        internal static void RegisterUser(string username, string authenticationCode)
         {
             //Validation!!!!!
             //validate username

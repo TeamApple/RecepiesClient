@@ -63,10 +63,7 @@
     <Compile Include="Helpers\LoginSuccessArgs.cs" />
     <Compile Include="Models\CommentModel.cs" />
     <Compile Include="Models\CreatedComment.cs" />
-    <Compile Include="Models\EfRepository.cs" />
-    <Compile Include="Models\IRepository.cs" />
     <Compile Include="Models\LoginResponseModel.cs" />
-    <Compile Include="Models\MemoryRepository.cs" />
     <Compile Include="Models\RecipeCreatedModel.cs" />
     <Compile Include="Models\RecipeModel.cs" />
     <Compile Include="Models\RegisterUserResponseModel.cs" />
