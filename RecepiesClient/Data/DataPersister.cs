@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using RecepiesClient.Helpers;
 using RecepiesClient.Models;
 
 namespace RecepiesClient.Data
@@ -15,11 +14,9 @@ namespace RecepiesClient.Data
 
         internal static void RegisterUser(string username, string authenticationCode)
         {
-            //Validation!!!!!
-            //validate username
-            //validate email
-            //validate authentication code
-            //use validation from WebAPI
+            Validator.ValidateUsername(username);
+            Validator.ValidateAuthCode(authenticationCode);
+
             var userModel = new UserModel()
             {
                 Username = username,
@@ -31,11 +28,9 @@ namespace RecepiesClient.Data
 
         internal static string LoginUser(string username, string authenticationCode)
         {
-            //Validation!!!!!
-            //validate username
-            //validate email
-            //validate authentication code
-            //use validation from WebAPI
+            Validator.ValidateUsername(username);
+            Validator.ValidateAuthCode(authenticationCode);
+
             var userModel = new UserModel()
             {
                 Username = username,

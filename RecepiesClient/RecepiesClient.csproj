@@ -61,6 +61,7 @@
     <Compile Include="Data\DataPersister.cs" />
     <Compile Include="Data\HttpRequester.cs" />
     <Compile Include="Helpers\LoginSuccessArgs.cs" />
+    <Compile Include="Helpers\Validator.cs" />
     <Compile Include="Models\CommentModel.cs" />
     <Compile Include="Models\CreatedComment.cs" />
     <Compile Include="Models\LoginResponseModel.cs" />

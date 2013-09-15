@@ -10,7 +10,7 @@ using RecepiesClient.Helpers;
 
 namespace RecepiesClient.ViewModels
 {
-    public class LoginRegisterViewModel : ViewModelBase
+    public class LoginRegisterViewModel : ViewModelBase, IPageViewModel
     {
         private string message;
         private ICommand loginCommand;
