@@ -34,6 +34,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -53,9 +57,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Behavior\RelayCommand.cs" />
+    <Compile Include="Data\DataPersister.cs" />
+    <Compile Include="Data\HttpRequester.cs" />
+    <Compile Include="Helpers\LoginSuccessArgs.cs" />
+    <Compile Include="Models\CommentModel.cs" />
+    <Compile Include="Models\CreatedComment.cs" />
+    <Compile Include="Models\EfRepository.cs" />
+    <Compile Include="Models\IRepository.cs" />
+    <Compile Include="Models\LoginResponseModel.cs" />
+    <Compile Include="Models\MemoryRepository.cs" />
+    <Compile Include="Models\RecipeCreatedModel.cs" />
+    <Compile Include="Models\RecipeModel.cs" />
+    <Compile Include="Models\RegisterUserResponseModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="RegisterControl.xaml.cs">
       <DependentUpon>RegisterControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\AppViewModel.cs" />
+    <Compile Include="ViewModels\IPageViewModel.cs" />
+    <Compile Include="ViewModels\LoginRegisterViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
     <Page Include="LoginControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -98,6 +120,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -110,6 +133,7 @@
   <ItemGroup>
     <Resource Include="Images\bob-s-nadenica.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
