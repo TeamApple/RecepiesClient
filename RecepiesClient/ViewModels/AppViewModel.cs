@@ -42,7 +42,7 @@ namespace RecepiesClient.ViewModels
             }
         }
 
-        public LoginRegisterFormViewModel LoginRegisterVM { get; set; }
+        public LoginRegisterViewModel LoginRegisterVM { get; set; }
 
         public List<IPageViewModel> ViewModels { get; set; }
 
@@ -94,7 +94,7 @@ namespace RecepiesClient.ViewModels
         {
             this.ViewModels = new List<IPageViewModel>();
             this.ViewModels.Add(new TodoListsViewModel());
-            var loginVM = new LoginRegisterFormViewModel();
+            var loginVM = new LoginRegisterViewModel();
             loginVM.LoginSuccess += this.LoginSuccessful;
             this.LoginRegisterVM = loginVM;
             this.CurrentViewModel = this.LoginRegisterVM;
