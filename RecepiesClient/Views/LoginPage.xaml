@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-	Title="Page1">
+      Title="Page1">
 
     <StackPanel>
         <Grid>
@@ -18,10 +18,17 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Username: " />
-            <TextBox Grid.Row="0" Grid.Column="1" Margin="30,0" />
+            <TextBox Grid.Row="0" Grid.Column="1" Margin="30,0" 
+                     Text="{Binding Username}" />
             <TextBlock Grid.Row="1" Grid.Column="0" Text="Password: " />
-            <PasswordBox Grid.Row="1" Grid.Column="1" Margin="30,0" />
+            <PasswordBox Grid.Row="1" 
+                         Grid.Column="1" 
+                         Margin="30,0" 
+                         Name="BoxPassword"/>
         </Grid>
-        <Button>Login</Button>
+        <Button 
+            Command="{Binding Login}" 
+            CommandParameter="{Binding ElementName=BoxPassword}"
+            Content="Login" />
     </StackPanel>
 </Page>

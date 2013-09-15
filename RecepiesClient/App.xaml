@@ -3,6 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="ApplicationView.xaml">
     <Application.Resources>
-         
+        <!--<Window.Resources>
+            <DataTemplate DataType="{x:Type local:HomeViewModel}">
+                <local:HomeView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type local:ProductsViewModel}">
+                <local:ProductsView />
+            </DataTemplate>
+        </Window.Resources>-->
     </Application.Resources>
 </Application>

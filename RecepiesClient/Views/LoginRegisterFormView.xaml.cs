@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace RecepiesClient.Views
 {
     /// <summary>
-    /// Interaction logic for RegisterPage.xaml
+    /// Interaction logic for LoginRegisterFormView.xaml
     /// </summary>
-    public partial class RegisterPage : Page
+    public partial class LoginRegisterFormView : UserControl
     {
-        public RegisterPage()
+        public LoginRegisterFormView()
         {
             InitializeComponent();
         }
