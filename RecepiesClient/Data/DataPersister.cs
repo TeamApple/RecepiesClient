@@ -75,7 +75,8 @@
                       Id = model.Id,
                       Name = model.Name,
                       CookingSteps = model.CookingSteps,
-                      Products = RecipeViewModel.ParseProducts(model.Products),
+                      //Products = RecipeViewModel.ParseProducts(model.Products),
+                      Products = model.Products,
                       ImagePath = model.ImagePath,
                   });
         }
