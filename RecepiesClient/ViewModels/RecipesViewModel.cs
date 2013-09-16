@@ -1,10 +1,10 @@
-﻿using RecepiesClient.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Windows.Input;
+using RecepiesClient.Data;
 
 namespace RecepiesClient.ViewModels
 {
@@ -13,9 +13,31 @@ namespace RecepiesClient.ViewModels
         private string title;
         private ObservableCollection<RecipeViewModel> recipes;
 
+        public ICommand NavigateToRecipeCommand { get; set; }
+
+        public RecipeViewModel SelectedRecipe { get; set; }
+
+        private void HandleNavigateToRecipeCommand(object obj)
+        {
+            if (SelectedRecipe == null)
+            {
+                return;
+            }
+
+            MessageBox.Show(SelectedRecipe.Name);
+        }
+
+        public RecipesViewModel()
+        {
+            this.NavigateToRecipeCommand = new RelayCommand(this.HandleNavigateToRecipeCommand);
+        }
+
         public string Name
         {
-            get { return "Recipe list view"; }
+            get
+            {
+                return "Recipe list view";
+            }
         }
 
         public string Title
