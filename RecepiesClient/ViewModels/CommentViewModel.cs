@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace RecepiesClient.ViewModels
 {
-    public class CommentViewModel:ViewModelBase
+    public class CommentViewModel : ViewModelBase
     {
         private string text;
+
         public string Text
         {
             get

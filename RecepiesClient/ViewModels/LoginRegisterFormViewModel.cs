@@ -5,6 +5,7 @@
     using System.Security.Cryptography;
     using System.Text;
     using System.Windows.Controls;
+    using System.Windows.Forms;
     using System.Windows.Input;
     using RecepiesClient.Behavior;
     using RecepiesClient.Data;
@@ -86,7 +87,16 @@
             var password = passwordBox.Password;
             var authenticationCode = this.GetSha1HashData(password);
 
-            var username = DataPersister.LoginUser(this.Username, authenticationCode);
+            string username = null;
+
+            try
+            {
+                username = DataPersister.LoginUser(this.Username, authenticationCode);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Invalid username or password");
+            }
 
             if (!string.IsNullOrEmpty(username))
             {

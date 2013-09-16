@@ -90,6 +90,11 @@
 
         protected void HandleChangeViewModelCommand(object parameter)
         {
+            if (CurrentViewModel.Name == "Add New Recipe View")
+            {
+                this.RecipeVM.Recipes = DataPersister.GetRecipes();
+            }
+
             var newCurrentViewModel = parameter as IPageViewModel;
             this.CurrentViewModel = newCurrentViewModel;
         }

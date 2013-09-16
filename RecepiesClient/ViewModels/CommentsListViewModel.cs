@@ -94,9 +94,12 @@ namespace RecepiesClient.ViewModels
         private void HandleAddCommentCommand(object parameter)
         {
             this.OwnerId = DataPersister.GetUserId();
-            DataPersister.AddComment(this.Text, this.RecipeId, this.OwnerId);
-            this.Text = "";
-            this.CommentsList = DataPersister.GetComments(this.RecipeId);
+            if (string.IsNullOrEmpty(this.Text))
+            {
+                DataPersister.AddComment(this.Text, this.RecipeId, this.OwnerId);
+                this.Text = "";
+                this.CommentsList = DataPersister.GetComments(this.RecipeId);
+            }
         }
 
         public CommentsListViewModel()
