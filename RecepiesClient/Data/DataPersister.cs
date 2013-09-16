@@ -9,6 +9,7 @@
 
     public class DataPersister
     {
+        protected static int UserId { get; set; }
         protected static string AccessToken { get; set; }
 
         private const string BaseServicesUrl = "http://recepiesservices.apphb.com/api/";
@@ -39,6 +40,7 @@
             };
             var loginResponse = HttpRequester.Post<LoginResponseModel>(BaseServicesUrl + "auth/token",
                 userModel);
+            UserId = loginResponse.Id;
             AccessToken = loginResponse.AccessToken;
             return loginResponse.Username;
         }
@@ -101,7 +103,6 @@
                 Text = comment,
                 RecepieId = recipeId,
                 OwnerId = ownerId
-
             };
 
             var headers = new Dictionary<string, string>();
@@ -109,6 +110,11 @@
 
             var response =
                 HttpRequester.Post<CreatedComment>(BaseServicesUrl + "comment/new", commentModel, headers);
+        }
+
+        internal static int GetUserId()
+        {
+            return UserId;
         }
     }
 }

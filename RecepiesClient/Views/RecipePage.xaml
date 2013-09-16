@@ -10,6 +10,7 @@
             <RowDefinition Height="30*" />
             <RowDefinition Height="50*" />
             <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50*" />
@@ -23,5 +24,22 @@
         <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Products}" />
         <TextBlock Grid.Row="2" Grid.Column="1" TextAlignment="Right">Cooking Steps:</TextBlock>
         <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding CookingSteps}" />
+
+        <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" DataContext="{Binding Comments}">
+            <TextBlock Text="Comments:" FontSize="24" FontWeight="Bold"/>
+            <ListBox ItemsSource="{Binding CommentsList}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Text}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <TextBlock Text="New Comment"/>
+            <Button Content="Add"
+                Command="{Binding AddComment}"/>
+            <TextBox Text="{Binding Text}"/>
+        </StackPanel>
     </Grid>
 </UserControl>

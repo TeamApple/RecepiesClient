@@ -8,11 +8,13 @@ using RecepiesClient.Data;
 
 namespace RecepiesClient.ViewModels
 {
-    public class CommentsListViewModel:ViewModelBase
+    public class CommentsListViewModel : ViewModelBase
     {
         private ICommand addCommentCommand;
 
         private string text;
+        private string recipeId;
+        private string ownerId;
 
         private ObservableCollection<CommentViewModel> commentsList;
 
@@ -33,6 +35,10 @@ namespace RecepiesClient.ViewModels
                 }
             }
         }
+
+        public int RecipeId { get; set; }
+
+        public int OwnerId { get; set; }
 
         public IEnumerable<CommentViewModel> CommentsList
         {
@@ -77,7 +83,7 @@ namespace RecepiesClient.ViewModels
         {
             get
             {
-                if (this.addCommentCommand== null)
+                if (this.addCommentCommand == null)
                 {
                     this.addCommentCommand = new RelayCommand(this.HandleAddCommentCommand);
                 }
@@ -87,12 +93,10 @@ namespace RecepiesClient.ViewModels
 
         private void HandleAddCommentCommand(object parameter)
         {
-            //TODO: change with true value
-            var recipeId = 5;
-            var ownerId = 5;
-            DataPersister.AddComment(this.Text, recipeId, ownerId);
+            this.OwnerId = DataPersister.GetUserId();
+            DataPersister.AddComment(this.Text, this.RecipeId, this.OwnerId);
             this.Text = "";
-            this.CommentsList = DataPersister.GetComments(recipeId);
+            this.CommentsList = DataPersister.GetComments(this.RecipeId);
         }
 
         public CommentsListViewModel()
