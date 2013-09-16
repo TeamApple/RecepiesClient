@@ -51,22 +51,22 @@
             return isLogoutSuccessful;
         }
 
-        //internal static void CreateNewRecipe(RecipeViewModel recipe)
-        //{
-        //    var recipeModel = new RecipeModel()
-        //    {
-        //        Name = recipe.Name,
-        //        Products = string.Join(", ", recipe.Products),
-        //        CookingSteps = recipe.CookingSteps,
-        //        ImagePath = recipe.ImagePath
-        //    };
+        internal static void CreateNewRecipe(RecipeViewModel recipe)
+        {
+            var recipeModel = new RecipeModel()
+            {
+                Name = recipe.Name,
+                Products = string.Join(", ", recipe.Products),
+                CookingSteps = recipe.CookingSteps,
+                ImagePath = recipe.ImagePath
+            };
 
-        //    var headers = new Dictionary<string, string>();
-        //    headers["X-accessToken"] = AccessToken;
+            var headers = new Dictionary<string, string>();
+            headers["X-accessToken"] = AccessToken;
 
-        //    var response =
-        //        HttpRequester.Post<RecipeCreatedModel>(BaseServicesUrl + "recipe/new", recipeModel, headers);
-        //}
+            var response =
+                HttpRequester.Post<RecipeCreatedModel>(BaseServicesUrl + "recipe/new", recipeModel, headers);
+        }
 
         internal static IEnumerable<RecipeModel> GetRecipes()
         {
@@ -76,6 +76,39 @@
             var recipesModels =
                 HttpRequester.Get<IEnumerable<RecipeModel>>(BaseServicesUrl + "recipe/all", headers);
             return recipesModels;
+        }
+
+        internal static IEnumerable<CommentViewModel> GetComments(int recipeId)
+        {
+            var headers = new Dictionary<string, string>();
+            headers["X-accessToken"] = AccessToken;
+
+            var commentsModels =
+                HttpRequester.Get<IEnumerable<CommentModel>>(BaseServicesUrl + "comment/"+recipeId, headers);
+            return commentsModels.AsQueryable().
+            Select(model => new CommentViewModel()
+            {
+                Id = model.Id,
+                Text = model.Text,
+                OwnerId = model.OwnerId
+            });
+        }
+
+        internal static void AddComment(string comment, int recipeId, int ownerId)
+        {
+            var commentModel = new CommentModel()
+            {
+                Text = comment,
+                RecepieId = recipeId,
+                OwnerId = ownerId
+
+            };
+
+            var headers = new Dictionary<string, string>();
+            headers["X-accessToken"] = AccessToken;
+
+            var response =
+                HttpRequester.Post<CreatedComment>(BaseServicesUrl + "comment/new", commentModel, headers);
         }
     }
 }

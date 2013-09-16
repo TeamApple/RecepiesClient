@@ -74,8 +74,11 @@
     <Compile Include="Models\RegisterUserResponseModel.cs" />
     <Compile Include="Models\RecipeModel.cs" />
     <Compile Include="ViewModels\AppViewModel.cs" />
+    <Compile Include="ViewModels\CommentsListViewModel.cs" />
+    <Compile Include="ViewModels\CommentViewModel.cs" />
     <Compile Include="ViewModels\IPageViewModel.cs" />
     <Compile Include="ViewModels\LoginRegisterFormViewModel.cs" />
+    <Compile Include="ViewModels\NewRecipeViewModel.cs" />
     <Compile Include="ViewModels\RecipesViewModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="RelayCommand.cs" />
@@ -86,6 +89,9 @@
     </Compile>
     <Compile Include="Views\LoginRegisterFormView.xaml.cs">
       <DependentUpon>LoginRegisterFormView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewRecipeFormView.xaml.cs">
+      <DependentUpon>NewRecipeFormView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RecipeDetails.xaml.cs">
       <DependentUpon>RecipeDetails.xaml</DependentUpon>
@@ -113,6 +119,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\LoginRegisterFormView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NewRecipeFormView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
