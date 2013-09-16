@@ -80,7 +80,6 @@
                 //this.CurrentViewModel = this.LoginRegisterVM;
                 this.HandleChangeViewModelCommand(this.LoginRegisterVM);
             }
-
         }
 
         private void HandleChangeViewModelCommand(object parameter)
@@ -92,7 +91,7 @@
         public AppViewModel()
         {
             this.ViewModels = new List<IPageViewModel>();
-            //this.ViewModels.Add(new TodoListsViewModel());
+            this.ViewModels.Add(new RecepiesViewModel());
             var loginVM = new LoginRegisterFormViewModel();
             loginVM.LoginSuccess += this.LoginSuccessful;
             this.LoginRegisterVM = loginVM;

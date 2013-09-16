@@ -1,4 +1,4 @@
-﻿<Window x:Class="RecepiesClient.ApplicationView"
+﻿<Window xmlns:Views1="clr-namespace:RecepiesClient.Views"  x:Class="RecepiesClient.ApplicationView"
         xmlns:Views="clr-namespace:RecepiesClient.Views"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -10,8 +10,9 @@
         <vms:AppViewModel />
     </Window.DataContext>
     <Window.Resources>
-        <DataTemplate DataType="{x:Type vms:LoginRegisterFormViewModel}">
-            <Views:LoginRegisterFormView />
+        <DataTemplate
+            DataType="{x:Type vms:LoginRegisterFormViewModel}">
+            <Views:LoginFormView/>
         </DataTemplate>
         <converters:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
     </Window.Resources>
@@ -37,7 +38,8 @@
                 <Button Command="{Binding Logout}"
                         Content="Logout"/>
             </StackPanel>
-            <ContentControl DockPanel.Dock="Bottom"            
+            <TextBlock>Hello</TextBlock>
+            <ContentControl DockPanel.Dock="Top"            
                             Content="{Binding CurrentViewModel}" />
 
         </DockPanel>
