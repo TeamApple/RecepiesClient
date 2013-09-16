@@ -3,30 +3,33 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:commandBehavior="clr-namespace:RecepiesClient.Behavior"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel>
         <TextBlock Text="{Binding Name}" FontSize="24" FontWeight="Bold"/>
-        <ListBox ItemsSource="{Binding Recipes}">
+        <ListBox ItemsSource="{Binding Recipes}"
+                 SelectedItem="{Binding SelectedRecipe}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
                         <TextBlock Text="{Binding Name}"/>
                         <!--<ListBox ItemsSource="{Binding Todos}">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Text}" />
-                                        <CheckBox IsChecked="{Binding IsDone}"
-                                                  Command="{Binding ChangeState}"
-                                                  />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
+                        <ListBox.ItemTemplate>
+                        <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Text}" />
+                        <CheckBox IsChecked="{Binding IsDone}"
+                        Command="{Binding ChangeState}"
+                        />
+                        </StackPanel>
+                        </DataTemplate>
+                        </ListBox.ItemTemplate>
                         </ListBox>-->
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <Button Click="{Binding NavigateToRecipeCommand}">Go To Recipe</Button>
     </StackPanel>
 </UserControl>
