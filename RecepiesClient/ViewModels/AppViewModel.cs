@@ -99,6 +99,7 @@
             loginVM.LoginSuccess += this.LoginSuccessful;
             this.LoginRegisterVM = loginVM;
             this.CurrentViewModel = this.LoginRegisterVM;
+            //this.CurrentViewModel = this.ViewModels[0];
         }
 
         public void LoginSuccessful(object sender, LoginSuccessArgs e)
