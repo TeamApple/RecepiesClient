@@ -18,6 +18,14 @@
             DataType="{x:Type vms:RecipesViewModel}">
             <Views:RecipesPage/>
         </DataTemplate>
+        <DataTemplate
+            DataType="{x:Type vms:NewRecipeViewModel}">
+            <Views:NewRecipeFormView/>
+        </DataTemplate>
+        <DataTemplate>
+            DataType="{x:Type vms:RecipeViewModel}">
+            <Views:RecipePage/>
+        </DataTemplate>
         <converters:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
     </Window.Resources>
     <Grid>

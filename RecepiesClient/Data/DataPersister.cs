@@ -51,40 +51,31 @@
             return isLogoutSuccessful;
         }
 
-        //internal static void CreateNewRecipe(RecipeViewModel recipe)
-        //{
-        //    var recipeModel = new RecipeModel()
-        //    {
-        //        Name = recipe.Name,
-        //        Products = string.Join(", ", recipe.Products),
-        //        CookingSteps = recipe.CookingSteps,
-        //        ImagePath = recipe.ImagePath
-        //    };
+        internal static void CreateNewRecipe(RecipeViewModel recipe)
+        {
+            var recipeModel = new RecipeModel()
+            {
+                Name = recipe.Name,
+                Products = string.Join(", ", recipe.Products),
+                CookingSteps = recipe.CookingSteps,
+                ImagePath = recipe.ImagePath
+            };
 
-        //    var headers = new Dictionary<string, string>();
-        //    headers["X-accessToken"] = AccessToken;
+            var headers = new Dictionary<string, string>();
+            headers["X-accessToken"] = AccessToken;
 
-        //    var response =
-        //        HttpRequester.Post<RecipeCreatedModel>(BaseServicesUrl + "recipe/new", recipeModel, headers);
-        //}
+            var response =
+                HttpRequester.Post<RecipeCreatedModel>(BaseServicesUrl + "recipe/new", recipeModel, headers);
+        }
 
-        internal static IEnumerable<RecipeViewModel> GetRecipes()
+        internal static IEnumerable<RecipeModel> GetRecipes()
         {
             var headers = new Dictionary<string, string>();
             headers["X-accessToken"] = AccessToken;
 
             var recipesModels =
                 HttpRequester.Get<IEnumerable<RecipeModel>>(BaseServicesUrl + "recipe/all", headers);
-            return recipesModels.AsQueryable().
-            Select(model => new RecipeViewModel()
-                  {
-                      Id = model.Id,
-                      Name = model.Name,
-                      CookingSteps = model.CookingSteps,
-                      //Products = RecipeViewModel.ParseProducts(model.Products),
-                      Products = model.Products,
-                      ImagePath = model.ImagePath
-                  });
+            return recipesModels;
         }
 
         internal static IEnumerable<CommentViewModel> GetComments(int recipeId)
