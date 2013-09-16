@@ -1,12 +1,16 @@
 ﻿namespace RecepiesClient.ViewModels
 {
     using System;
+    using System.Linq;
     using System.Windows.Input;
+    using RecepiesClient.Behavior;
     using RecepiesClient.Data;
+    using System.Windows.Forms;
 
     public class NewRecipeViewModel : ViewModelBase, IPageViewModel
     {
         private ICommand addRecipeCommand;
+        private ICommand addImageCommand;
 
         public NewRecipeViewModel()
         {
@@ -35,6 +39,32 @@
                 return this.addRecipeCommand;
             }
         }
+
+        public ICommand AddImage
+        {
+            get
+            {
+                if (this.addImageCommand == null)
+                {
+                    this.addImageCommand = new RelayCommand(
+                        (e) =>
+                        {
+                            OpenFileDialog fileDialog = new OpenFileDialog();
+                            fileDialog.Multiselect = true;
+                            fileDialog.ShowDialog();
+                            if (!fileDialog.FileNames.Any())
+                            {
+                                return;
+                            }
+
+                            this.NewRecipe.ImagePath = fileDialog.FileName;
+                        });
+                }
+
+                return addImageCommand;
+            }
+        }
+
 
         private void HandleAddNewRecipeCommand(object parameter)
         {

@@ -55,7 +55,7 @@
         {
             var recipeModel = new RecipeModel()
             {
-                Name = recipe.Name,
+                Name = recipe.RecipeName,
                 Products = string.Join(", ", recipe.Products),
                 CookingSteps = recipe.CookingSteps,
                 ImagePath = recipe.ImagePath

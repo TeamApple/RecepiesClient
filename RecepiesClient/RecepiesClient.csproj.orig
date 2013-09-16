@@ -66,7 +66,6 @@
     <Compile Include="Data\DataPersister.cs" />
     <Compile Include="Data\HttpRequester.cs" />
     <Compile Include="Helpers\LoginSuccessArgs.cs" />
-    <Compile Include="Helpers\RecipeNavigateArgs.cs" />
     <Compile Include="Helpers\Validator.cs" />
     <Compile Include="Models\CommentModel.cs" />
     <Compile Include="Models\CreatedComment.cs" />
@@ -75,13 +74,12 @@
     <Compile Include="Models\RegisterUserResponseModel.cs" />
     <Compile Include="Models\RecipeModel.cs" />
     <Compile Include="ViewModels\AppViewModel.cs" />
-    <Compile Include="ViewModels\CommentsListViewModel.cs" />
-    <Compile Include="ViewModels\CommentViewModel.cs" />
     <Compile Include="ViewModels\IPageViewModel.cs" />
     <Compile Include="ViewModels\LoginRegisterFormViewModel.cs" />
     <Compile Include="ViewModels\NewRecipeViewModel.cs" />
     <Compile Include="ViewModels\RecipesViewModel.cs" />
     <Compile Include="Models\UserModel.cs" />
+    <Compile Include="RelayCommand.cs" />
     <Compile Include="ViewModels\RecipeViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\HomePage.xaml.cs">
@@ -90,11 +88,13 @@
     <Compile Include="Views\LoginRegisterFormView.xaml.cs">
       <DependentUpon>LoginRegisterFormView.xaml</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Views\NewRecipeFormView.xaml.cs">
       <DependentUpon>NewRecipeFormView.xaml</DependentUpon>
-    </Compile>
+=======
     <Compile Include="Views\RecipeDetails.xaml.cs">
       <DependentUpon>RecipeDetails.xaml</DependentUpon>
+>>>>>>> 4a0e4b26e1ba0aa8deef9135c4cff222968e47af
     </Compile>
     <Compile Include="Views\RecipePage.xaml.cs">
       <DependentUpon>RecipePage.xaml</DependentUpon>
@@ -122,12 +122,16 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+<<<<<<< HEAD
     <Page Include="Views\NewRecipeFormView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\RecipePage.xaml">
+=======
     <Page Include="Views\RecipeDetails.xaml">
       <SubType>Designer</SubType>
+>>>>>>> 4a0e4b26e1ba0aa8deef9135c4cff222968e47af
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RecipePage.xaml">
@@ -170,10 +174,7 @@
   <ItemGroup>
     <Resource Include="Images\bob-s-nadenica.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\shop-salad.jpg" />
-    <Resource Include="Images\sirene.jpg" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

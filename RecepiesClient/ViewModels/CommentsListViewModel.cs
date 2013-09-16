@@ -1,11 +1,10 @@
-﻿using RecepiesClient.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
+using RecepiesClient.Behavior;
+using RecepiesClient.Data;
 
 namespace RecepiesClient.ViewModels
 {
@@ -15,7 +14,9 @@ namespace RecepiesClient.ViewModels
 
         private string text;
 
-        private ObservableCollection<CommentViewModel> comments;
+        private ObservableCollection<CommentViewModel> commentsList;
+
+        private CommentViewModel newCommentViewModel;
 
         public string Text
         {
@@ -33,29 +34,42 @@ namespace RecepiesClient.ViewModels
             }
         }
 
-        public IEnumerable<CommentViewModel> Comments
+        public IEnumerable<CommentViewModel> CommentsList
         {
             get
             {
-                if (this.comments == null)
+                if (this.commentsList == null)
                 {
                     //TODO: Change recipreId
                     var recipeId = 5;
-                    this.Comments = DataPersister.GetComments(recipeId);
+                    this.CommentsList = DataPersister.GetComments(recipeId);
                 }
-                return this.comments;
+                return this.commentsList;
             }
             set
             {
-                if (this.comments == null)
+                if (this.commentsList == null)
                 {
-                    this.comments = new ObservableCollection<CommentViewModel>();
+                    this.commentsList = new ObservableCollection<CommentViewModel>();
                 }
-                this.comments.Clear();
+                this.commentsList.Clear();
                 foreach (var item in value)
                 {
-                    this.comments.Add(item);
+                    this.commentsList.Add(item);
                 }
+            }
+        }
+
+        public CommentViewModel NewComment
+        {
+            get
+            {
+                return this.newCommentViewModel;
+            }
+            set
+            {
+                this.newCommentViewModel = value;
+                this.OnPropertyChanged("NewComment");
             }
         }
 
@@ -78,7 +92,12 @@ namespace RecepiesClient.ViewModels
             var ownerId = 5;
             DataPersister.AddComment(this.Text, recipeId, ownerId);
             this.Text = "";
-            this.Comments = DataPersister.GetComments(recipeId);
+            this.CommentsList = DataPersister.GetComments(recipeId);
+        }
+
+        public CommentsListViewModel()
+        {
+            this.newCommentViewModel = new CommentViewModel();
         }
     }
 }
