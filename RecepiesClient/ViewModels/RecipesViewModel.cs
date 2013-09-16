@@ -16,7 +16,7 @@ namespace RecepiesClient.ViewModels
 
         public ICommand NavigateToRecipeCommand { get; set; }
 
-        public RecipeViewModel SelectedRecipe { get; set; }
+        public RecipeModel SelectedRecipe { get; set; }
 
         private void HandleNavigateToRecipeCommand(object obj)
         {
