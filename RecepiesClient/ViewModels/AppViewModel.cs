@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Windows.Input;
+    using RecepiesClient.Behavior;
     using RecepiesClient.Data;
     using RecepiesClient.Helpers;
 

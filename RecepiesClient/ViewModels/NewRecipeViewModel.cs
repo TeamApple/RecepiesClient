@@ -2,6 +2,7 @@
 {
     using System;
     using System.Windows.Input;
+    using RecepiesClient.Behavior;
     using RecepiesClient.Data;
 
     public class NewRecipeViewModel : ViewModelBase, IPageViewModel

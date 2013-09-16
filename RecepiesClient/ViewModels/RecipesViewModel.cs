@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Input;
+using RecepiesClient.Behavior;
 using RecepiesClient.Data;
 using RecepiesClient.Models;
 

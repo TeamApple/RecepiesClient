@@ -81,7 +81,6 @@
     <Compile Include="ViewModels\NewRecipeViewModel.cs" />
     <Compile Include="ViewModels\RecipesViewModel.cs" />
     <Compile Include="Models\UserModel.cs" />
-    <Compile Include="RelayCommand.cs" />
     <Compile Include="ViewModels\RecipeViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\HomePage.xaml.cs">
