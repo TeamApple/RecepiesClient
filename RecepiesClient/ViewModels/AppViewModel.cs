@@ -9,11 +9,16 @@
 
     public class AppViewModel : ViewModelBase
     {
-        private ICommand changeViewModelCommand;
-
-        private IPageViewModel currentViewModel;
         private bool loggedInUser = false;
         private ICommand logoutCommand;
+        private IPageViewModel currentViewModel;
+        private ICommand changeViewModelCommand;
+
+        public string Username { get; set; }
+
+        public LoginRegisterViewModel LoginRegisterVM { get; set; }
+
+        public List<IPageViewModel> ViewModels { get; set; }
 
         public IPageViewModel CurrentViewModel
         {
@@ -41,10 +46,6 @@
             }
         }
 
-        public LoginRegisterFormViewModel LoginRegisterVM { get; set; }
-
-        public List<IPageViewModel> ViewModels { get; set; }
-
         public ICommand ChangeViewModel
         {
             get
@@ -54,6 +55,7 @@
                     this.changeViewModelCommand =
                         new RelayCommand(this.HandleChangeViewModelCommand);
                 }
+
                 return this.changeViewModelCommand;
             }
         }
@@ -66,6 +68,7 @@
                 {
                     this.logoutCommand = new RelayCommand(this.HandleLogoutCommand);
                 }
+
                 return this.logoutCommand;
             }
         }
@@ -92,7 +95,7 @@
         {
             this.ViewModels = new List<IPageViewModel>();
             this.ViewModels.Add(new RecepiesViewModel());
-            var loginVM = new LoginRegisterFormViewModel();
+            var loginVM = new LoginRegisterViewModel();
             loginVM.LoginSuccess += this.LoginSuccessful;
             this.LoginRegisterVM = loginVM;
             this.CurrentViewModel = this.LoginRegisterVM;

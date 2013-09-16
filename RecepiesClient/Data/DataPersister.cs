@@ -15,6 +15,9 @@
 
         internal static void RegisterUser(string username, string authenticationCode)
         {
+            Validator.ValidateUsername(username);
+            Validator.ValidateAuthCode(authenticationCode);
+
             var userModel = new UserModel()
             {
                 Username = username,
@@ -26,6 +29,9 @@
 
         internal static string LoginUser(string username, string authenticationCode)
         {
+            Validator.ValidateUsername(username);
+            Validator.ValidateAuthCode(authenticationCode);
+
             var userModel = new UserModel()
             {
                 Username = username,

@@ -36,6 +36,7 @@
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -57,12 +58,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Converter\BoolToVisibilityConverter.cs" />
-    <Compile Include="Data\HttpRequester.cs" />
+    
+    <Compile Include="Behavior\RelayCommand.cs" />
     <Compile Include="Data\DataPersister.cs" />
+    <Compile Include="Data\HttpRequester.cs" />
     <Compile Include="Helpers\LoginSuccessArgs.cs" />
+    <Compile Include="Helpers\Validator.cs" />
+    <Compile Include="Models\CommentModel.cs" />
+    <Compile Include="Models\CreatedComment.cs" />
     <Compile Include="Models\LoginResponseModel.cs" />
     <Compile Include="Models\RecipeCreatedModel.cs" />
+    <Compile Include="Models\RegisterUserResponseModel.cs" />
     <Compile Include="Models\RecipeModel.cs" />
     <Compile Include="ViewModels\AppViewModel.cs" />
     <Compile Include="ViewModels\IPageViewModel.cs" />
@@ -75,6 +81,8 @@
     </Compile>
     <Compile Include="Views\LoginRegisterFormView.xaml.cs">
       <DependentUpon>LoginRegisterFormView.xaml</DependentUpon>
+    <Compile Include="ViewModels\LoginRegisterViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
     </Compile>
     <Compile Include="Views\RecipePage.xaml.cs">
       <DependentUpon>RecipePage.xaml</DependentUpon>
@@ -142,6 +150,7 @@
   <ItemGroup>
     <Resource Include="Images\bob-s-nadenica.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

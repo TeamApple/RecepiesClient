@@ -2,7 +2,6 @@
 {
     using System;
     using System.ComponentModel;
-    using System.Linq;
 
     public abstract class ViewModelBase : INotifyPropertyChanged
     {
