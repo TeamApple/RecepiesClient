@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Input;
 using RecepiesClient.Data;
+using RecepiesClient.Helpers;
 using RecepiesClient.Models;
 
 namespace RecepiesClient.ViewModels
@@ -12,9 +13,23 @@ namespace RecepiesClient.ViewModels
     public class RecipesViewModel : ViewModelBase, IPageViewModel
     {
         private string title;
+        private ICommand navigateToRecipe;
         private ObservableCollection<RecipeModel> recipes;
 
-        public ICommand NavigateToRecipeCommand { get; set; }
+        public ICommand NavigateToRecipeCommand
+        {
+            get
+            {
+                if (this.navigateToRecipe == null)
+                {
+                    this.navigateToRecipe = new RelayCommand(this.HandleNavigateToRecipeCommand);
+                }
+
+                return this.navigateToRecipe;
+            }
+        }
+
+        public event EventHandler<RecipeNavigateArgs> RecipeNavigate;
 
         public RecipeModel SelectedRecipe { get; set; }
 
@@ -25,12 +40,14 @@ namespace RecepiesClient.ViewModels
                 return;
             }
 
-            MessageBox.Show(SelectedRecipe.Name);
-        }
+            var newVM = new RecipeViewModel() { 
+                RecipeName = this.SelectedRecipe.Name,
+                Products = this.SelectedRecipe.Products,
+                CookingSteps = this.SelectedRecipe.CookingSteps,
+                ImagePath = this.SelectedRecipe.ImagePath
+            };
 
-        public RecipesViewModel()
-        {
-            this.NavigateToRecipeCommand = new RelayCommand(this.HandleNavigateToRecipeCommand);
+            this.RaiseRecipeNavigate(newVM);
         }
 
         public string Name
@@ -78,6 +95,14 @@ namespace RecepiesClient.ViewModels
                 {
                     this.recipes.Add(item);
                 }
+            }
+        }
+
+        protected void RaiseRecipeNavigate(RecipeViewModel vm)
+        {
+            if (this.RecipeNavigate != null)
+            {
+                this.RecipeNavigate(this, new RecipeNavigateArgs(vm));
             }
         }
     }
