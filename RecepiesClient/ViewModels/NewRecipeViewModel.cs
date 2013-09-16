@@ -1,11 +1,15 @@
 ﻿namespace RecepiesClient.ViewModels
 {
     using System;
+    using System.Collections.Specialized;
+    using System.IO;
     using System.Linq;
+    using System.Net;
+    using System.Windows.Forms;
     using System.Windows.Input;
+    using System.Xml.Linq;
     using RecepiesClient.Behavior;
     using RecepiesClient.Data;
-    using System.Windows.Forms;
 
     public class NewRecipeViewModel : ViewModelBase, IPageViewModel
     {
@@ -57,7 +61,9 @@
                                 return;
                             }
 
-                            this.NewRecipe.ImagePath = fileDialog.FileName;
+                            string imagePath = this.UploadImageToImgur(fileDialog.FileName);
+
+                            this.NewRecipe.ImagePath = imagePath;
                         });
                 }
 
@@ -69,6 +75,22 @@
         private void HandleAddNewRecipeCommand(object parameter)
         {
             DataPersister.CreateNewRecipe(this.NewRecipe);
+        }
+
+        private string UploadImageToImgur(string imagePath)
+        {
+            using (var w = new WebClient())
+            {
+                var values = new NameValueCollection
+                {
+                    { "key", "433a1bf4743dd8d7845629b95b5ca1b4" },
+                    { "image", Convert.ToBase64String(File.ReadAllBytes(imagePath)) }
+                };
+
+                byte[] response = w.UploadValues("http://imgur.com/api/upload.xml", values);
+
+                return XDocument.Load(new MemoryStream(response)).Root.Element("original_image").Value;
+            }
         }
     }
 }
