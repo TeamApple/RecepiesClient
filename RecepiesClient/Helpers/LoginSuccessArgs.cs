@@ -1,8 +1,9 @@
-﻿using System;
-
-namespace RecepiesClient.Helpers
+﻿namespace RecepiesClient.Helpers
 {
-    public class LoginSuccessArgs:EventArgs
+    using System;
+    using System.Linq;
+
+    public class LoginSuccessArgs : EventArgs
     {
         public string Username { get; set; }
 

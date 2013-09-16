@@ -1,16 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using RecepiesClient.Helpers;
-using RecepiesClient.Models;
-
-namespace RecepiesClient.Data
+﻿namespace RecepiesClient.Data
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using RecepiesClient.Models;
+    using RecepiesClient.ViewModels;
+
     public class DataPersister
     {
         protected static string AccessToken { get; set; }
 
-        private const string BaseServicesUrl = "http://recepiesservices.apphb.com/";
+        private const string BaseServicesUrl = "http://recepiesservices.apphb.com/api/";
 
         internal static void RegisterUser(string username, string authenticationCode)
         {
@@ -50,52 +51,39 @@ namespace RecepiesClient.Data
             return isLogoutSuccessful;
         }
 
-        //internal static void CreateNewTodosList(string title, IEnumerable<TodoViewModel> todos)
-        //{
-        //    var listModel = new TodolistModel()
-        //    {
-        //        Title = title,
-        //        Todos = todos.Select(t => new TodoModel()
-        //        {
-        //            Text = t.Text
-        //        })
-        //    };
+        internal static void CreateNewRecipe(RecipeViewModel recipe)
+        {
+            var recipeModel = new RecipeModel()
+            {
+                Name = recipe.Name,
+                Products = string.Join(", ", recipe.Products),
+                CookingSteps = recipe.CookingSteps,
+                ImagePath = recipe.ImagePath
+            };
 
-        //    var headers = new Dictionary<string, string>();
-        //    headers["X-accessToken"] = AccessToken;
+            var headers = new Dictionary<string, string>();
+            headers["X-accessToken"] = AccessToken;
 
-        //    var response =
-        //        HttpRequester.Post<ListCreatedModel>(BaseServicesUrl + "lists", listModel, headers);
-        //}
+            var response =
+                HttpRequester.Post<RecipeCreatedModel>(BaseServicesUrl + "recipe/new", recipeModel, headers);
+        }
 
-        //internal static IEnumerable<TodoListViewModel> GetTodoLists()
-        //{
-        //    var headers = new Dictionary<string, string>();
-        //    headers["X-accessToken"] = AccessToken;
+        internal static IEnumerable<RecipeViewModel> GetRecipes()
+        {
+            var headers = new Dictionary<string, string>();
+            headers["X-accessToken"] = AccessToken;
 
-        //    var todoListsModels =
-        //        HttpRequester.Get<IEnumerable<TodolistModel>>(BaseServicesUrl + "lists", headers);
-        //    return todoListsModels.
-        //        AsQueryable().
-        //         Select(model => new TodoListViewModel()
-        //          {
-        //              Id = model.Id,
-        //              Title = model.Title,
-        //              Todos = model.Todos.AsQueryable().Select(todo => new TodoViewModel()
-        //              {
-        //                  Id = todo.Id,
-        //                  Text = todo.Text,
-        //                  IsDone = todo.IsDone
-        //              })
-        //          });
-        //}
-
-        //internal static void ChangeState(int todoId)
-        //{
-        //    var headers = new Dictionary<string, string>();
-        //    headers["X-accessToken"] = AccessToken;
-
-        //    HttpRequester.Put(BaseServicesUrl + "todos/" + todoId, headers);
-        //}
+            var recipesModels =
+                HttpRequester.Get<IEnumerable<RecipeModel>>(BaseServicesUrl + "lists", headers);
+            return recipesModels.AsQueryable().
+            Select(model => new RecipeViewModel()
+                  {
+                      Id = model.Id,
+                      Name = model.Name,
+                      CookingSteps = model.CookingSteps,
+                      Products = RecipeViewModel.ParseProducts(model.Products),
+                      ImagePath = model.ImagePath,
+                  });
+        }
     }
 }

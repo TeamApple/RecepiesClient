@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace RecepiesClient
+namespace RecepiesClient.Views
 {
     /// <summary>
-    /// Interaction logic for LoginControl.xaml
+    /// Interaction logic for RecipePage.xaml
     /// </summary>
-    public partial class LoginControl : UserControl
+    public partial class RecipePage : Page
     {
-        public LoginControl()
+        public RecipePage()
         {
             InitializeComponent();
         }

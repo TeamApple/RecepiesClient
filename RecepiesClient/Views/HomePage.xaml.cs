@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace RecepiesClient
+namespace RecepiesClient.Views
 {
     /// <summary>
-    /// Interaction logic for RegisterControl.xaml
+    /// Interaction logic for HomePage.xaml
     /// </summary>
-    public partial class RegisterControl : UserControl
+    public partial class HomePage : Page
     {
-        public RegisterControl()
+        public HomePage()
         {
             InitializeComponent();
         }

@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using Newtonsoft.Json;
-
-namespace RecepiesClient.Data
+﻿namespace RecepiesClient.Data
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Net;
+    using Newtonsoft.Json;
+
     public class HttpRequester
     {
-        public static T Get<T>(string resourceUrl, IDictionary<string, string> headers=null)
+        public static T Get<T>(string resourceUrl, IDictionary<string, string> headers = null)
         {
             var request = WebRequest.Create(resourceUrl) as HttpWebRequest;
             request.ContentType = "application/json";

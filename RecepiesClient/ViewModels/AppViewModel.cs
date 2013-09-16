@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Input;
-using RecepiesClient.Behavior;
-using RecepiesClient.Data;
-using RecepiesClient.Helpers;
-
-namespace RecepiesClient.ViewModels
+﻿namespace RecepiesClient.ViewModels
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Windows.Input;
+    using RecepiesClient.Data;
+    using RecepiesClient.Helpers;
+
     public class AppViewModel : ViewModelBase
     {
         private bool loggedInUser = false;

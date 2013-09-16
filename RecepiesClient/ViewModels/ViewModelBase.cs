@@ -1,8 +1,8 @@
-﻿using System;
-using System.ComponentModel;
-
-namespace RecepiesClient.ViewModels
+﻿namespace RecepiesClient.ViewModels
 {
+    using System;
+    using System.ComponentModel;
+
     public abstract class ViewModelBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
