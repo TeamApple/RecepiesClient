@@ -4,6 +4,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Input;
+using System.Text;
+using System.Threading.Tasks;
+using RecepiesClient.Data;
+using RecepiesClient.Models;
 using RecepiesClient.Data;
 
 namespace RecepiesClient.ViewModels
@@ -11,7 +15,7 @@ namespace RecepiesClient.ViewModels
     public class RecipesViewModel : ViewModelBase, IPageViewModel
     {
         private string title;
-        private ObservableCollection<RecipeViewModel> recipes;
+        private ObservableCollection<RecipeModel> recipes;
 
         public ICommand NavigateToRecipeCommand { get; set; }
 
@@ -56,7 +60,7 @@ namespace RecepiesClient.ViewModels
             }
         }
 
-        public IEnumerable<RecipeViewModel> Recipes
+        public IEnumerable<RecipeModel> Recipes
         {
             get
             {
@@ -70,7 +74,7 @@ namespace RecepiesClient.ViewModels
             {
                 if (this.recipes == null)
                 {
-                    this.recipes = new ObservableCollection<RecipeViewModel>();
+                    this.recipes = new ObservableCollection<RecipeModel>();
                 }
                 this.recipes.Clear();
                 foreach (var item in value)

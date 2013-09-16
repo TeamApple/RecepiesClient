@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace RecepiesClient.Views
 {
     /// <summary>
-    /// Interaction logic for RecipePage.xaml
+    /// Interaction logic for RecipeDetails.xaml
     /// </summary>
-    public partial class RecipePage : UserControl
+    public partial class RecipeDetails : UserControl
     {
-        public RecipePage()
+        public RecipeDetails()
         {
             InitializeComponent();
         }

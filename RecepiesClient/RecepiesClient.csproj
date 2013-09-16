@@ -87,6 +87,9 @@
     <Compile Include="Views\LoginRegisterFormView.xaml.cs">
       <DependentUpon>LoginRegisterFormView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\RecipeDetails.xaml.cs">
+      <DependentUpon>RecipeDetails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RecipePage.xaml.cs">
       <DependentUpon>RecipePage.xaml</DependentUpon>
     </Compile>
@@ -113,9 +116,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\RecipePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Views\RecipeDetails.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RecipePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RecipesPage.xaml">
       <SubType>Designer</SubType>
