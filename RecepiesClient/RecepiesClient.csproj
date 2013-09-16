@@ -60,6 +60,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Behavior\CommandsBehavior.cs" />
     <Compile Include="Behavior\RelayCommand.cs" />
     <Compile Include="Converter\BoolToVisibilityConverter.cs" />
     <Compile Include="Data\DataPersister.cs" />
@@ -89,6 +90,9 @@
     </Compile>
     <Compile Include="Views\NewRecipeFormView.xaml.cs">
       <DependentUpon>NewRecipeFormView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RecipeDetails.xaml.cs">
+      <DependentUpon>RecipeDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RecipePage.xaml.cs">
       <DependentUpon>RecipePage.xaml</DependentUpon>
@@ -120,9 +124,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\RecipePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Views\RecipeDetails.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RecipePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RecipesPage.xaml">
       <SubType>Designer</SubType>
