@@ -7,7 +7,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel>
         <TextBlock Text="Comments:" FontSize="24" FontWeight="Bold"/>
-        <ListBox ItemsSource="{Binding CommentsLists}">
+        <ListBox ItemsSource="{Binding Comments}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
