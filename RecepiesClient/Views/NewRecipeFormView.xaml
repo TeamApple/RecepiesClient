@@ -6,13 +6,12 @@
              xmlns:vm="clr-namespace:RecepiesClient.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <UserControl.DataContext>
+    <!--<UserControl.DataContext>
         <vm:NewRecipeViewModel/>
-    </UserControl.DataContext>
+    </UserControl.DataContext>-->
     <StackPanel>
         <Grid DataContext="{Binding NewRecipe}">
             <Grid.RowDefinitions>
-                <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -24,14 +23,16 @@
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">Create new recipe</Label>
             <Label Grid.Row="1" Grid.Column="0">Recipe Name: </Label>
-            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=Name}"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=RecipeName}"/>
             <Label Grid.Row="2" Grid.Column="0">Products:</Label>
             <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Products}"/>
             <Label Grid.Row="3" Grid.Column="0">CookingSteps:</Label>
-            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=CookingSteps}"/>
-            <Label Grid.Row="4" Grid.Column="0">Image:</Label>
-            <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Path=ImagePath}"/>
+            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=CookingSteps}"/>     
         </Grid>
+        <DockPanel>
+            <Label DockPanel.Dock="Left">Image:</Label>
+            <Button Command="{Binding AddImage}" Content="Add Image"/>
+        </DockPanel>
         <Button Content="Create" Command="{Binding AddRecipe}" />
     </StackPanel>
 </UserControl>
