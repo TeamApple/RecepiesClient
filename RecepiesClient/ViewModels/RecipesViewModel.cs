@@ -45,7 +45,11 @@ namespace RecepiesClient.ViewModels
                 RecipeName = this.SelectedRecipe.Name,
                 Products = this.SelectedRecipe.Products,
                 CookingSteps = this.SelectedRecipe.CookingSteps,
-                ImagePath = this.SelectedRecipe.ImagePath
+                ImagePath = this.SelectedRecipe.ImagePath,
+                Comments = new CommentsListViewModel(){
+                    CommentsList = DataPersister.GetComments(this.SelectedRecipe.Id),
+                    RecipeId = this.SelectedRecipe.Id
+                }
             };
 
             this.RaiseRecipeNavigate(newVM);

@@ -10,6 +10,7 @@ namespace RecepiesClient.ViewModels
         private string products;
         private string cookingSteps;
         private string imagePath;
+        private CommentsListViewModel comments;
 
         public string Name
         {
@@ -58,16 +59,29 @@ namespace RecepiesClient.ViewModels
             }
         }
 
-        public string ImagePath 
+        public string ImagePath
         {
-            get 
+            get
             {
                 return this.imagePath;
             }
-            set 
+            set
             {
                 this.imagePath = value;
                 this.OnPropertyChanged("ImagePath");
+            }
+        }
+
+        public CommentsListViewModel Comments
+        {
+            get
+            {
+                return this.comments;
+            }
+            set
+            {
+                this.comments = value;
+                this.OnPropertyChanged("Comments");
             }
         }
 
