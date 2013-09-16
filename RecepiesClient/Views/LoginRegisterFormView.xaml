@@ -6,28 +6,28 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel>
-        <TextBlock>Login form</TextBlock>
-        <Grid>
+        <TextBlock Margin="24,0,0,0">Login form</TextBlock>
+        <Grid Margin="25,6,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="19*"/>
                 <ColumnDefinition Width="56*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="0*"/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Username: " />
             <TextBox Text="{Binding Username}" Grid.Row="0" Grid.Column="1" Margin="30,0" />
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="Password: " />
-            <PasswordBox Name="BoxPassword" Grid.Row="1" Grid.Column="1" Margin="30,0" />
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Password: " Margin="0,6,0,0" />
+            <PasswordBox Name="BoxPassword" Grid.Row="1" Grid.Column="1" Margin="30,6,30,0" />
         </Grid>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Margin="154,10,0,0">
             <Button Content="Login"
                     Command="{Binding Login}" 
-                    CommandParameter="{Binding ElementName=BoxPassword}" />
+                    CommandParameter="{Binding ElementName=BoxPassword}" Margin="0,0,5,0" Width="55" />
             <Button Content="Register"
                     Command="{Binding Register}" 
-                    CommandParameter="{Binding ElementName=BoxPassword}" />
+                    CommandParameter="{Binding ElementName=BoxPassword}" Width="58" />
         </StackPanel>
     </StackPanel>
 </UserControl>

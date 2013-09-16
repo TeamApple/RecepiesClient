@@ -7,15 +7,15 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30*" />
             <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
+            <RowDefinition Height="51*" />
+            <RowDefinition Height="64*" />
+            <RowDefinition Height="135*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50*" />
-            <ColumnDefinition Width="56*" />
-            <ColumnDefinition Width="75*" />
+            <ColumnDefinition Width="128*" />
+            <ColumnDefinition Width="105*" />
+            <ColumnDefinition Width="67*" />
         </Grid.ColumnDefinitions>
         
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding RecipeName}" FontSize="24" FontWeight="Bold"/>
@@ -37,9 +37,9 @@
                 </ListBox.ItemTemplate>
             </ListBox>
             <TextBlock Text="New Comment"/>
+            <TextBox Text="{Binding Text}"/>
             <Button Content="Add"
                 Command="{Binding AddComment}"/>
-            <TextBox Text="{Binding Text}"/>
         </StackPanel>
     </Grid>
 </UserControl>
