@@ -1,20 +1,20 @@
-﻿namespace RecepiesClient.ViewModels
-{
-    using System;
-    using System.Linq;
-    using System.Security.Cryptography;
-    using System.Text;
-    using System.Windows.Controls;
-    using System.Windows.Input;
-    using RecepiesClient;
-    using RecepiesClient.Data;
-    using RecepiesClient.Helpers;
+﻿using System;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using System.Windows.Controls;
+using System.Windows.Input;
+using RecepiesClient.Data;
+using RecepiesClient.Helpers;
 
-    public class LoginRegisterFormViewModel : ViewModelBase, IPageViewModel
+namespace RecepiesClient.ViewModels
+{
+    public class LoginRegisterViewModel : ViewModelBase, IPageViewModel
     {
         private string message;
         private ICommand loginCommand;
         private ICommand registerCommand;
+        public event EventHandler<LoginSuccessArgs> LoginSuccess;
 
         public string Name
         {
@@ -47,6 +47,7 @@
                 {
                     this.loginCommand = new RelayCommand(this.HandleLoginCommand);
                 }
+
                 return this.loginCommand;
             }
         }
@@ -59,32 +60,16 @@
                 {
                     this.registerCommand = new RelayCommand(this.HandleRegisterCommand);
                 }
+
                 return this.registerCommand;
             }
-        }
-
-        public event EventHandler<LoginSuccessArgs> LoginSuccess;
-
-        public LoginRegisterFormViewModel()
-        {
-        }
-
-        private void HandleRegisterCommand(object parameter)
-        {
-            var passwordBox = parameter as PasswordBox;
-            var password = passwordBox.Password;
-
-            var authenticationCode = this.GetSha1HashData(password);
-
-            DataPersister.RegisterUser(this.Username, authenticationCode);
-            this.HandleLoginCommand(parameter);
         }
 
         private void HandleLoginCommand(object parameter)
         {
             var passwordBox = parameter as PasswordBox;
             var password = passwordBox.Password;
-            var authenticationCode = this.GetSha1HashData(password);
+            string authenticationCode = GetSha1HashData(this.Username, password);
 
             var username = DataPersister.LoginUser(this.Username, authenticationCode);
 
@@ -94,14 +79,14 @@
             }
         }
 
-        private string GetSha1HashData(string data)
+        private void HandleRegisterCommand(object parameter)
         {
-            
-            byte[] buffer = Encoding.Default.GetBytes(data);
-            SHA1CryptoServiceProvider cryptoTransformSha1 = new SHA1CryptoServiceProvider();
-            string hashedString = BitConverter.ToString(cryptoTransformSha1.ComputeHash(buffer)).Replace("-", "");
+            var passwordBox = parameter as PasswordBox;
+            var password = passwordBox.Password;
+            string authenticationCode = GetSha1HashData(this.Username, password);
 
-            return hashedString;
+            DataPersister.RegisterUser(this.Username, authenticationCode);
+            this.HandleLoginCommand(parameter);
         }
 
         protected void RaiseLoginSuccess(string username)
@@ -110,6 +95,15 @@
             {
                 this.LoginSuccess(this, new LoginSuccessArgs(username));
             }
+        }
+
+        private string GetSha1HashData(string username, string password)
+        {
+            byte[] buffer = Encoding.Default.GetBytes(username + password);
+            SHA1CryptoServiceProvider cryptoTransformSha1 = new SHA1CryptoServiceProvider();
+            string authenticationCode = BitConverter.ToString(cryptoTransformSha1.ComputeHash(buffer)).Replace("-", "");
+
+            return authenticationCode;
         }
     }
 }

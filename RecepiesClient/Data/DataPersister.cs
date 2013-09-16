@@ -3,9 +3,8 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
+    using RecepiesClient.Helpers;
     using RecepiesClient.Models;
-    using RecepiesClient.ViewModels;
 
     public class DataPersister
     {
@@ -13,8 +12,11 @@
 
         private const string BaseServicesUrl = "http://recepiesservices.apphb.com/api/";
 
-        internal static void RegisterUser(string username, string email, string authenticationCode)
+        internal static void RegisterUser(string username, string authenticationCode)
         {
+            Validator.ValidateUsername(username);
+            Validator.ValidateAuthCode(authenticationCode);
+
             var userModel = new UserModel()
             {
                 Username = username,
@@ -26,6 +28,9 @@
 
         internal static string LoginUser(string username, string authenticationCode)
         {
+            Validator.ValidateUsername(username);
+            Validator.ValidateAuthCode(authenticationCode);
+
             var userModel = new UserModel()
             {
                 Username = username,
@@ -45,40 +50,39 @@
             return isLogoutSuccessful;
         }
 
-        internal static void CreateNewRecipe(RecipeViewModel recipe)
-        {
-            var recipeModel = new RecipeModel()
-            {
-                Name = recipe.Name,
-                Products = string.Join(", ", recipe.Products),
-                CookingSteps = recipe.CookingSteps,
-                ImagePath = recipe.ImagePath
-            };
+        //internal static void CreateNewRecipe(RecipeViewModel recipe)
+        //{
+        //    var recipeModel = new RecipeModel()
+        //    {
+        //        Name = recipe.Name,
+        //        Products = string.Join(", ", recipe.Products),
+        //        CookingSteps = recipe.CookingSteps,
+        //        ImagePath = recipe.ImagePath
+        //    };
 
-            var headers = new Dictionary<string, string>();
-            headers["X-accessToken"] = AccessToken;
+        //    var headers = new Dictionary<string, string>();
+        //    headers["X-accessToken"] = AccessToken;
 
-            var response =
-                HttpRequester.Post<RecipeCreatedModel>(BaseServicesUrl + "recipe/new", recipeModel, headers);
-        }
+        //    var response =
+        //        HttpRequester.Post<RecipeCreatedModel>(BaseServicesUrl + "recipe/new", recipeModel, headers);
+        //}
 
-        internal static IEnumerable<RecipeViewModel> GetRecipes()
-        {
-            var headers = new Dictionary<string, string>();
-            headers["X-accessToken"] = AccessToken;
+        //internal static IEnumerable<RecipeViewModel> GetRecipes()
+        //{
+        //    var headers = new Dictionary<string, string>();
+        //    headers["X-accessToken"] = AccessToken;
 
-            var recipesModels =
-                HttpRequester.Get<IEnumerable<RecipeModel>>(BaseServicesUrl + "lists", headers);
-            return recipesModels.AsQueryable().
-            Select(model => new RecipeViewModel()
-                  {
-                      Id = model.Id,
-                      Name = model.Name,
-                      CookingSteps = model.CookingSteps,
+        //    var recipesModels =
+        //        HttpRequester.Get<IEnumerable<RecipeModel>>(BaseServicesUrl + "lists", headers);
+        //    return recipesModels.AsQueryable().
+        //    Select(model => new RecipeViewModel()
+        //          {
+        //              Id = model.Id,
+        //              Name = model.Name,
+        //              CookingSteps = model.CookingSteps,
                       //Products = RecipeViewModel.ParseProducts(model.Products),
                       Products = model.Products,
-                      ImagePath = model.ImagePath,
-                  });
-        }
+        //          });
+        //}
     }
 }
