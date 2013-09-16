@@ -86,5 +86,38 @@
                       ImagePath = model.ImagePath
                   });
         }
+
+        internal static IEnumerable<CommentViewModel> GetComments(int recipeId)
+        {
+            var headers = new Dictionary<string, string>();
+            headers["X-accessToken"] = AccessToken;
+
+            var commentsModels =
+                HttpRequester.Get<IEnumerable<CommentModel>>(BaseServicesUrl + "comment/"+recipeId, headers);
+            return commentsModels.AsQueryable().
+            Select(model => new CommentViewModel()
+            {
+                Id = model.Id,
+                Text = model.Text,
+                OwnerId = model.OwnerId
+            });
+        }
+
+        internal static void AddComment(string comment, int recipeId, int ownerId)
+        {
+            var commentModel = new CommentModel()
+            {
+                Text = comment,
+                RecepieId = recipeId,
+                OwnerId = ownerId
+
+            };
+
+            var headers = new Dictionary<string, string>();
+            headers["X-accessToken"] = AccessToken;
+
+            var response =
+                HttpRequester.Post<CreatedComment>(BaseServicesUrl + "comment/new", commentModel, headers);
+        }
     }
 }

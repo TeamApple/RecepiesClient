@@ -17,7 +17,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <TextBlock Text="New Comment"/>
-        <Button Content="AddComment"
+        <Button Content="Add"
                 Command="{Binding AddComment}"/>
         <TextBox Text="{Binding NewComment}"/>
     </StackPanel>
