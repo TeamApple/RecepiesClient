@@ -82,7 +82,6 @@
     <Compile Include="Views\LoginRegisterFormView.xaml.cs">
       <DependentUpon>LoginRegisterFormView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\LoginRegisterViewModel.cs" />
     <Compile Include="Views\RecipePage.xaml.cs">
       <DependentUpon>RecipePage.xaml</DependentUpon>
     </Compile>

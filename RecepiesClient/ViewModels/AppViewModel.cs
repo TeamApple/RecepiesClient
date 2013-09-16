@@ -16,7 +16,7 @@
 
         public string Username { get; set; }
 
-        public LoginRegisterViewModel LoginRegisterVM { get; set; }
+        public LoginRegisterFormViewModel LoginRegisterVM { get; set; }
 
         public List<IPageViewModel> ViewModels { get; set; }
 
@@ -95,7 +95,7 @@
         {
             this.ViewModels = new List<IPageViewModel>();
             //this.ViewModels.Add(new RecepiesViewModel());
-            var loginVM = new LoginRegisterViewModel();
+            var loginVM = new LoginRegisterFormViewModel();
             loginVM.LoginSuccess += this.LoginSuccessful;
             this.LoginRegisterVM = loginVM;
             this.CurrentViewModel = this.LoginRegisterVM;
