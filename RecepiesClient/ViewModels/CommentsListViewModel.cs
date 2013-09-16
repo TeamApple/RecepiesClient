@@ -17,7 +17,7 @@ namespace RecepiesClient.ViewModels
 
         private ObservableCollection<CommentViewModel> commentsList;
 
-        public ObservableCollection<CommentViewModel> Comments { get; set; }
+        private CommentViewModel newCommentViewModel;
 
         public string Text
         {
@@ -61,6 +61,19 @@ namespace RecepiesClient.ViewModels
             }
         }
 
+        public CommentViewModel NewComment
+        {
+            get
+            {
+                return this.newCommentViewModel;
+            }
+            set
+            {
+                this.newCommentViewModel = value;
+                this.OnPropertyChanged("NewComment");
+            }
+        }
+
         public ICommand AddComment
         {
             get
@@ -80,17 +93,12 @@ namespace RecepiesClient.ViewModels
             var ownerId = 5;
             DataPersister.AddComment(this.Text, recipeId, ownerId);
             this.Text = "";
-            this.Comments.Clear();
             this.CommentsList = DataPersister.GetComments(recipeId);
         }
 
         public CommentsListViewModel()
         {
-            this.Comments = new ObservableCollection<CommentViewModel>();
-            this.Comments.Add(new CommentViewModel()
-                {
-                    Text = "sample"
-                });
+            this.newCommentViewModel = new CommentViewModel();
         }
     }
 }
