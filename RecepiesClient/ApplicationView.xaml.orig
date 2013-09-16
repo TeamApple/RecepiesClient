@@ -19,12 +19,13 @@
             <Views:RecipesPage/>
         </DataTemplate>
         <DataTemplate
+<<<<<<< HEAD
             DataType="{x:Type vms:NewRecipeViewModel}">
             <Views:NewRecipeFormView/>
-        </DataTemplate>
-        <DataTemplate 
+=======
             DataType="{x:Type vms:RecipeViewModel}">
             <Views:RecipePage/>
+>>>>>>> 4a0e4b26e1ba0aa8deef9135c4cff222968e47af
         </DataTemplate>
         <converters:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
     </Window.Resources>
