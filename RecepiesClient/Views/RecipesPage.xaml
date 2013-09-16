@@ -30,6 +30,6 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <!--<Button Click="{Binding NavigateToRecipeCommand}">Go To Recipe</Button>-->
+        <Button Command="{Binding NavigateToRecipeCommand}">Go To Recipe</Button>
     </StackPanel>
 </UserControl>

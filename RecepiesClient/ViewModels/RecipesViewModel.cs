@@ -4,11 +4,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Input;
-using System.Text;
-using System.Threading.Tasks;
 using RecepiesClient.Data;
 using RecepiesClient.Models;
-using RecepiesClient.Data;
 
 namespace RecepiesClient.ViewModels
 {
@@ -19,7 +16,7 @@ namespace RecepiesClient.ViewModels
 
         public ICommand NavigateToRecipeCommand { get; set; }
 
-        public RecipeViewModel SelectedRecipe { get; set; }
+        public RecipeModel SelectedRecipe { get; set; }
 
         private void HandleNavigateToRecipeCommand(object obj)
         {

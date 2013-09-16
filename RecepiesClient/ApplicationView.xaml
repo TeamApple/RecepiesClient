@@ -21,8 +21,8 @@
         <DataTemplate
             DataType="{x:Type vms:NewRecipeViewModel}">
             <Views:NewRecipeFormView/>
-        </DataTemplate>
-        <DataTemplate 
+        </DataTemplate> 
+        <DataTemplate
             DataType="{x:Type vms:RecipeViewModel}">
             <Views:RecipePage/>
         </DataTemplate>
