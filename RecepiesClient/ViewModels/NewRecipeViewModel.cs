@@ -54,7 +54,8 @@
                         (e) =>
                         {
                             OpenFileDialog fileDialog = new OpenFileDialog();
-                            fileDialog.Multiselect = true;
+                            fileDialog.Multiselect = false;
+                            fileDialog.Filter = "Image Files(*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF";
                             fileDialog.ShowDialog();
                             if (!fileDialog.FileNames.Any())
                             {
@@ -70,7 +71,6 @@
                 return addImageCommand;
             }
         }
-
 
         private void HandleAddNewRecipeCommand(object parameter)
         {
