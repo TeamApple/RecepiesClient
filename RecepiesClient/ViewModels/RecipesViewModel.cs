@@ -1,17 +1,16 @@
-﻿using RecepiesClient.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using RecepiesClient.Data;
+using RecepiesClient.Models;
 
 namespace RecepiesClient.ViewModels
 {
     public class RecipesViewModel : ViewModelBase, IPageViewModel
     {
         private string title;
-        private ObservableCollection<RecipeViewModel> recipes;
+        private ObservableCollection<RecipeModel> recipes;
 
         public string Name
         {
@@ -34,7 +33,7 @@ namespace RecepiesClient.ViewModels
             }
         }
 
-        public IEnumerable<RecipeViewModel> Recipes
+        public IEnumerable<RecipeModel> Recipes
         {
             get
             {
@@ -48,7 +47,7 @@ namespace RecepiesClient.ViewModels
             {
                 if (this.recipes == null)
                 {
-                    this.recipes = new ObservableCollection<RecipeViewModel>();
+                    this.recipes = new ObservableCollection<RecipeModel>();
                 }
                 this.recipes.Clear();
                 foreach (var item in value)

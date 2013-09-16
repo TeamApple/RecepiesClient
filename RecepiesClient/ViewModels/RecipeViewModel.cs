@@ -4,11 +4,16 @@ using System.Linq;
 
 namespace RecepiesClient.ViewModels
 {
-    public class RecipeViewModel
+    public class RecipeViewModel : ViewModelBase, IPageViewModel
     {
+        public string Name
+        {
+            get { return "Recipe view"; }
+        }
+
         public int Id { get; set; }
 
-        public string Name { get; set; }
+        public string RecipeName { get; set; }
 
         public string Products { get; set; }
         //public IEnumerable<string> Products { get; set; }

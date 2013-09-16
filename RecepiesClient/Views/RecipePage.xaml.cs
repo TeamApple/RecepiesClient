@@ -18,7 +18,7 @@ namespace RecepiesClient.Views
     /// <summary>
     /// Interaction logic for RecipePage.xaml
     /// </summary>
-    public partial class RecipePage : Page
+    public partial class RecipePage : UserControl
     {
         public RecipePage()
         {

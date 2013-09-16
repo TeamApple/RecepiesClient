@@ -113,8 +113,8 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RecipePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RecipesPage.xaml">
       <SubType>Designer</SubType>
