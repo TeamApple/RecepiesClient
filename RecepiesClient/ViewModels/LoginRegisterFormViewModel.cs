@@ -96,7 +96,7 @@
 
         private string GetSha1HashData(string data)
         {
-            
+
             byte[] buffer = Encoding.Default.GetBytes(data);
             SHA1CryptoServiceProvider cryptoTransformSha1 = new SHA1CryptoServiceProvider();
             string hashedString = BitConverter.ToString(cryptoTransformSha1.ComputeHash(buffer)).Replace("-", "");
