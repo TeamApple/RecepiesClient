@@ -6,9 +6,9 @@
              xmlns:vm="clr-namespace:RecepiesClient.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <!--<UserControl.DataContext>
+    <UserControl.DataContext>
         <vm:NewRecipeViewModel/>
-    </UserControl.DataContext>-->
+    </UserControl.DataContext>
     <StackPanel>
         <Grid DataContext="{Binding NewRecipe}">
             <Grid.RowDefinitions>
