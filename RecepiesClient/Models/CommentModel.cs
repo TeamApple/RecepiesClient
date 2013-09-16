@@ -11,10 +11,10 @@ namespace RecepiesClient.Models
 
         public int OwnerId { get; set; }
 
-        public virtual User Owner { get; set; }
+        public UserModel Owner { get; set; }
 
         public int RecepieId { get; set; }
 
-        public virtual Recepy Recipe { get; set; }
+        public RecipeModel Recipe { get; set; }
     }
 }

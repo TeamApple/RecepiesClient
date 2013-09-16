@@ -3,9 +3,8 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
+    using RecepiesClient.Helpers;
     using RecepiesClient.Models;
-    using RecepiesClient.ViewModels;
 
     public class DataPersister
     {

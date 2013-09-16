@@ -58,8 +58,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    
     <Compile Include="Behavior\RelayCommand.cs" />
+    <Compile Include="Converter\BoolToVisibilityConverter.cs" />
     <Compile Include="Data\DataPersister.cs" />
     <Compile Include="Data\HttpRequester.cs" />
     <Compile Include="Helpers\LoginSuccessArgs.cs" />
@@ -81,14 +81,10 @@
     </Compile>
     <Compile Include="Views\LoginRegisterFormView.xaml.cs">
       <DependentUpon>LoginRegisterFormView.xaml</DependentUpon>
-    <Compile Include="ViewModels\LoginRegisterViewModel.cs" />
-    <Compile Include="ViewModels\ViewModelBase.cs" />
     </Compile>
+    <Compile Include="ViewModels\LoginRegisterViewModel.cs" />
     <Compile Include="Views\RecipePage.xaml.cs">
       <DependentUpon>RecipePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\TestControl.xaml.cs">
-      <DependentUpon>TestControl.xaml</DependentUpon>
     </Compile>
     <Page Include="ApplicationView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -113,10 +109,6 @@
     <Page Include="Views\RecipePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\TestControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

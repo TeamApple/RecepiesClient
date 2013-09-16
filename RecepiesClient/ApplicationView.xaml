@@ -38,8 +38,7 @@
                 <Button Command="{Binding Logout}"
                         Content="Logout"/>
             </StackPanel>
-            <TextBlock>Hello</TextBlock>
-            <ContentControl DockPanel.Dock="Top"            
+            <ContentControl DockPanel.Dock="Bottom"            
                             Content="{Binding CurrentViewModel}" />
 
         </DockPanel>

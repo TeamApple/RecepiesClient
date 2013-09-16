@@ -80,7 +80,7 @@
             {
                 this.Username = "";
                 this.LoggedInUser = false;
-                //this.CurrentViewModel = this.LoginRegisterVM;
+                this.CurrentViewModel = this.LoginRegisterVM;
                 this.HandleChangeViewModelCommand(this.LoginRegisterVM);
             }
         }
@@ -94,7 +94,7 @@
         public AppViewModel()
         {
             this.ViewModels = new List<IPageViewModel>();
-            this.ViewModels.Add(new RecepiesViewModel());
+            //this.ViewModels.Add(new RecepiesViewModel());
             var loginVM = new LoginRegisterViewModel();
             loginVM.LoginSuccess += this.LoginSuccessful;
             this.LoginRegisterVM = loginVM;
@@ -107,7 +107,5 @@
             this.LoggedInUser = true;
             this.HandleChangeViewModelCommand(this.ViewModels[0]);
         }
-
-        public string Username { get; set; }
     }
 }
