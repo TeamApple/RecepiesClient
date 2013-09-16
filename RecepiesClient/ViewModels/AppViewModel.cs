@@ -94,7 +94,7 @@
         public AppViewModel()
         {
             this.ViewModels = new List<IPageViewModel>();
-            //this.ViewModels.Add(new RecepiesViewModel());
+            this.ViewModels.Add(new RecipesViewModel());
             var loginVM = new LoginRegisterFormViewModel();
             loginVM.LoginSuccess += this.LoginSuccessful;
             this.LoginRegisterVM = loginVM;

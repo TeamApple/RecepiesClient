@@ -80,8 +80,8 @@
         //              Id = model.Id,
         //              Name = model.Name,
         //              CookingSteps = model.CookingSteps,
-        //              Products = RecipeViewModel.ParseProducts(model.Products),
-        //              ImagePath = model.ImagePath,
+                      //Products = RecipeViewModel.ParseProducts(model.Products),
+                      Products = model.Products,
         //          });
         //}
     }
