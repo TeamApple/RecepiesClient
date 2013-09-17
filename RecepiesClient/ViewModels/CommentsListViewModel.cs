@@ -94,7 +94,7 @@ namespace RecepiesClient.ViewModels
         private void HandleAddCommentCommand(object parameter)
         {
             this.OwnerId = DataPersister.GetUserId();
-            if (string.IsNullOrEmpty(this.Text))
+            if (!string.IsNullOrEmpty(this.Text))
             {
                 DataPersister.AddComment(this.Text, this.RecipeId, this.OwnerId);
                 this.Text = "";
