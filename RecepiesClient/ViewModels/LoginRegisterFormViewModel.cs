@@ -6,7 +6,7 @@
     using System.Text;
     using System.Windows.Controls;
     using System.Windows.Input;
-    using RecepiesClient;
+    using RecepiesClient.Behavior;
     using RecepiesClient.Data;
     using RecepiesClient.Helpers;
 
