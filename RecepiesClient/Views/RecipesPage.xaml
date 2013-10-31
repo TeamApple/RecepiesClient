@@ -14,18 +14,6 @@
                 <DataTemplate>
                     <StackPanel>
                         <TextBlock Text="{Binding Name}"/>
-                        <!--<ListBox ItemsSource="{Binding Todos}">
-                        <ListBox.ItemTemplate>
-                        <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Text}" />
-                        <CheckBox IsChecked="{Binding IsDone}"
-                        Command="{Binding ChangeState}"
-                        />
-                        </StackPanel>
-                        </DataTemplate>
-                        </ListBox.ItemTemplate>
-                        </ListBox>-->
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

@@ -49,9 +49,10 @@
             }
         }
 
-        private void HandleLogoutCommand(object parameter)
+        private async void HandleLogoutCommand(object parameter)
         {
-            bool isUserLoggedOut = DataPersister.LogoutUser();
+            bool isUserLoggedOut = await DataPersister.LogoutUserAsync();
+
             if (isUserLoggedOut)
             {
                 this.Username = "";
@@ -88,11 +89,11 @@
             }
         }
 
-        protected void HandleChangeViewModelCommand(object parameter)
+        protected async void HandleChangeViewModelCommand(object parameter)
         {
             if (CurrentViewModel.Name == "Add New Recipe View")
             {
-                this.RecipeVM.Recipes = DataPersister.GetRecipes();
+                this.RecipeVM.Recipes = await DataPersister.GetRecipesAsync();
             }
 
             var newCurrentViewModel = parameter as IPageViewModel;

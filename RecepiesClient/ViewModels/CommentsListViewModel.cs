@@ -48,8 +48,9 @@ namespace RecepiesClient.ViewModels
                 {
                     //TODO: Change recipreId
                     var recipeId = 5;
-                    this.CommentsList = DataPersister.GetComments(recipeId);
+                    LoadCommentsAsync(recipeId);
                 }
+
                 return this.commentsList;
             }
             set
@@ -58,12 +59,19 @@ namespace RecepiesClient.ViewModels
                 {
                     this.commentsList = new ObservableCollection<CommentViewModel>();
                 }
+
                 this.commentsList.Clear();
+
                 foreach (var item in value)
                 {
                     this.commentsList.Add(item);
                 }
             }
+        }
+  
+        private async void LoadCommentsAsync(int recipeId)
+        {
+            this.CommentsList = await DataPersister.GetCommentsAsync(recipeId);
         }
 
         public CommentViewModel NewComment
@@ -91,14 +99,15 @@ namespace RecepiesClient.ViewModels
             }
         }
 
-        private void HandleAddCommentCommand(object parameter)
+        private async void HandleAddCommentCommand(object parameter)
         {
             this.OwnerId = DataPersister.GetUserId();
+
             if (!string.IsNullOrEmpty(this.Text))
             {
                 DataPersister.AddComment(this.Text, this.RecipeId, this.OwnerId);
                 this.Text = "";
-                this.CommentsList = DataPersister.GetComments(this.RecipeId);
+                this.CommentsList = await DataPersister.GetCommentsAsync(this.RecipeId);
             }
         }
 

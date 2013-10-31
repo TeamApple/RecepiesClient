@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Security.Cryptography;
     using System.Text;
+    using System.Threading.Tasks;
     using System.Windows.Controls;
     using System.Windows.Forms;
     using System.Windows.Input;
@@ -60,6 +61,7 @@
                 {
                     this.registerCommand = new RelayCommand(this.HandleRegisterCommand);
                 }
+
                 return this.registerCommand;
             }
         }
@@ -70,18 +72,25 @@
         {
         }
 
-        private void HandleRegisterCommand(object parameter)
+        private async void HandleRegisterCommand(object parameter)
         {
             var passwordBox = parameter as PasswordBox;
             var password = passwordBox.Password;
 
             var authenticationCode = this.GetSha1HashData(password);
-
-            DataPersister.RegisterUser(this.Username, authenticationCode);
-            this.HandleLoginCommand(parameter);
+            try
+            {
+                 await Task.Factory
+                .StartNew(() => DataPersister.RegisterUserAsync(this.Username, authenticationCode))
+                .ContinueWith((continuation) => this.HandleLoginCommand(parameter));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
-        private void HandleLoginCommand(object parameter)
+        private async void HandleLoginCommand(object parameter)
         {
             var passwordBox = parameter as PasswordBox;
             var password = passwordBox.Password;
@@ -91,7 +100,7 @@
 
             try
             {
-                username = DataPersister.LoginUser(this.Username, authenticationCode);
+                username = await DataPersister.LoginUserAsync(this.Username, authenticationCode);
             }
             catch (Exception)
             {
@@ -106,7 +115,6 @@
 
         private string GetSha1HashData(string data)
         {
-
             byte[] buffer = Encoding.Default.GetBytes(data);
             SHA1CryptoServiceProvider cryptoTransformSha1 = new SHA1CryptoServiceProvider();
             string hashedString = BitConverter.ToString(cryptoTransformSha1.ComputeHash(buffer)).Replace("-", "");

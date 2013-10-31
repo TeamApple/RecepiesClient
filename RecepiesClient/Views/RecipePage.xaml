@@ -21,9 +21,9 @@
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding RecipeName}" FontSize="24" FontWeight="Bold"/>
         <Image Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Source="{Binding ImagePath}" />
         <TextBlock Grid.Row="1" Grid.Column="1" TextAlignment="Right">Products:</TextBlock>
-        <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Products}" />
+        <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Products}" TextWrapping="Wrap" />
         <TextBlock Grid.Row="2" Grid.Column="1" TextAlignment="Right">Cooking Steps:</TextBlock>
-        <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding CookingSteps}" />
+        <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding CookingSteps}" TextWrapping="Wrap" />
 
         <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" DataContext="{Binding Comments}">
             <TextBlock Text="Comments:" FontSize="24" FontWeight="Bold"/>

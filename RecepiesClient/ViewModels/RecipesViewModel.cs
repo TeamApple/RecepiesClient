@@ -34,7 +34,7 @@ namespace RecepiesClient.ViewModels
 
         public RecipeModel SelectedRecipe { get; set; }
 
-        private void HandleNavigateToRecipeCommand(object obj)
+        private async void HandleNavigateToRecipeCommand(object obj)
         {
             if (SelectedRecipe == null)
             {
@@ -47,7 +47,7 @@ namespace RecepiesClient.ViewModels
                 CookingSteps = this.SelectedRecipe.CookingSteps,
                 ImagePath = this.SelectedRecipe.ImagePath,
                 Comments = new CommentsListViewModel(){
-                    CommentsList = DataPersister.GetComments(this.SelectedRecipe.Id),
+                    CommentsList = await DataPersister.GetCommentsAsync(this.SelectedRecipe.Id),
                     RecipeId = this.SelectedRecipe.Id
                 }
             };
@@ -85,8 +85,9 @@ namespace RecepiesClient.ViewModels
             {
                 if (this.recipes == null)
                 {
-                    this.Recipes = DataPersister.GetRecipes();
+                    LoadRecipesAsync();
                 }
+
                 return this.recipes;
             }
             set
@@ -100,7 +101,13 @@ namespace RecepiesClient.ViewModels
                 {
                     this.recipes.Add(item);
                 }
+                this.OnPropertyChanged("Recipes");
             }
+        }
+  
+        private async void LoadRecipesAsync()
+        {
+            this.Recipes = await DataPersister.GetRecipesAsync();
         }
 
         protected void RaiseRecipeNavigate(RecipeViewModel vm)

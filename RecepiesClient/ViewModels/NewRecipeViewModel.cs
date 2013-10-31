@@ -75,7 +75,7 @@
         private void HandleAddNewRecipeCommand(object parameter)
         {
             DataPersister.CreateNewRecipe(this.NewRecipe);
-            DataPersister.GetRecipes();
+            DataPersister.GetRecipesAsync();
         }
 
         private string UploadImageToImgur(string imagePath)

@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
     using RecepiesClient.Helpers;
     using RecepiesClient.Models;
     using RecepiesClient.ViewModels;
@@ -10,11 +11,12 @@
     public class DataPersister
     {
         protected static int UserId { get; set; }
+
         protected static string AccessToken { get; set; }
 
         private const string BaseServicesUrl = "http://recepiesservices.apphb.com/api/";
 
-        internal static void RegisterUser(string username, string authenticationCode)
+        internal async static void RegisterUserAsync(string username, string authenticationCode)
         {
             Validator.ValidateUsername(username);
             Validator.ValidateAuthCode(authenticationCode);
@@ -24,11 +26,12 @@
                 Username = username,
                 AuthCode = authenticationCode
             };
-            HttpRequester.Post(BaseServicesUrl + "users/register",
+            
+            await HttpRequester.PostAsync<UserModel>(BaseServicesUrl + "users/register",
                 userModel);
         }
 
-        internal static string LoginUser(string username, string authenticationCode)
+        internal async static Task<string> LoginUserAsync(string username, string authenticationCode)
         {
             Validator.ValidateUsername(username);
             Validator.ValidateAuthCode(authenticationCode);
@@ -38,18 +41,21 @@
                 Username = username,
                 AuthCode = authenticationCode
             };
-            var loginResponse = HttpRequester.Post<LoginResponseModel>(BaseServicesUrl + "auth/token",
+
+            var loginResponse = await HttpRequester.PostAsync<LoginResponseModel>(BaseServicesUrl + "auth/token",
                 userModel);
+
             UserId = loginResponse.Id;
             AccessToken = loginResponse.AccessToken;
             return loginResponse.Username;
         }
 
-        internal static bool LogoutUser()
+        internal async static Task<bool> LogoutUserAsync()
         {
             var headers = new Dictionary<string, string>();
             headers["X-accessToken"] = AccessToken;
-            var isLogoutSuccessful = HttpRequester.Put(BaseServicesUrl + "users/logout", headers);
+            var isLogoutSuccessful = await HttpRequester.Put(BaseServicesUrl + "users/logout", headers);
+            
             return isLogoutSuccessful;
         }
 
@@ -67,36 +73,37 @@
             headers["X-accessToken"] = AccessToken;
 
             var response =
-                HttpRequester.Post<RecipeCreatedModel>(BaseServicesUrl + "recipe/new", recipeModel, headers);
+                HttpRequester.PostAsync<RecipeCreatedModel>(BaseServicesUrl + "recipe/new", recipeModel, headers);
         }
 
-        internal static IEnumerable<RecipeModel> GetRecipes()
+        internal async static Task<IEnumerable<RecipeModel>> GetRecipesAsync()
         {
             var headers = new Dictionary<string, string>();
             headers["X-accessToken"] = AccessToken;
 
-            var recipesModels =
-                HttpRequester.Get<IEnumerable<RecipeModel>>(BaseServicesUrl + "recipe/all", headers);
+            var recipesModels = await
+                HttpRequester.GetAsync<IEnumerable<RecipeModel>>(BaseServicesUrl + "recipe/all", headers);
+
             return recipesModels;
         }
 
-        internal static IEnumerable<CommentViewModel> GetComments(int recipeId)
+        internal async static Task<IEnumerable<CommentViewModel>> GetCommentsAsync(int recipeId)
         {
             var headers = new Dictionary<string, string>();
             headers["X-accessToken"] = AccessToken;
 
-            var commentsModels =
-                HttpRequester.Get<IEnumerable<CommentModel>>(BaseServicesUrl + "comment/"+recipeId, headers);
+            var commentsModels = await
+                HttpRequester.GetAsync<IEnumerable<CommentModel>>(BaseServicesUrl + "comment/" + recipeId, headers);
             return commentsModels.AsQueryable().
             Select(model => new CommentViewModel()
-            {
-                Id = model.Id,
-                Text = model.Text,
-                OwnerId = model.OwnerId
-            });
+                  {
+                      Id = model.Id,
+                      Text = model.Text,
+                      OwnerId = model.OwnerId
+                  });
         }
 
-        internal static void AddComment(string comment, int recipeId, int ownerId)
+        internal async static void AddComment(string comment, int recipeId, int ownerId)
         {
             var commentModel = new CommentModel()
             {
@@ -108,8 +115,8 @@
             var headers = new Dictionary<string, string>();
             headers["X-accessToken"] = AccessToken;
 
-            var response =
-                HttpRequester.Post<CreatedComment>(BaseServicesUrl + "comment/new", commentModel, headers);
+            var response = await
+                HttpRequester.PostAsync<CreatedComment>(BaseServicesUrl + "comment/new", commentModel, headers);
         }
 
         internal static int GetUserId()
